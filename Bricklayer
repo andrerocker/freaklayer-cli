@@ -1,0 +1,17 @@
+# Bricklayer Server URL
+bricklayer "http://localhost:8080"
+
+# Project Namespace
+project "cegonha"
+
+# Project Repository
+repository "git@code.locaweb.com.br:iaas/cegonha.git"
+
+# Project Repository Branch
+repository_branch "1.9.3"
+
+# Project Build Image
+build_image "locaweb-ruby"
+
+# Project Output format
+format "pawn"
