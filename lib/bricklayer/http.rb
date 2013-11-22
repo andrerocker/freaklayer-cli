@@ -1,5 +1,3 @@
-require "excon"
-
 module Bricklayer
   module Http
     extend self
@@ -14,6 +12,20 @@ module Bricklayer
       puts
     end
 
+    def download(url)
+      Bricklayer::Logger.debug "GET #{url}"
+      temp = Tempfile.new("build-file")
+
+      streamer = lambda do |chunk, remaining_bytes, total_bytes|
+        bar = resolve_bar(total_bytes)
+        temp.write(chunk)
+        bar.increment!(chunk.size)
+      end
+
+      Excon.get(url, :response_block => streamer)
+      temp
+    end
+
     private
       def chunk_processor
         @chunk ||= streammer = lambda do |chunk,_,_|
@@ -22,6 +34,12 @@ module Bricklayer
             collect(&:chomp).
             delete_if(&:empty?).
             each {|current| Bricklayer::Logger.output(current)}
+        end
+      end
+
+      def resolve_bar(size)
+        @bar ||= begin
+          ProgressBar.new(size)
         end
       end
   end

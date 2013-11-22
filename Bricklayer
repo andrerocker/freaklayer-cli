@@ -14,4 +14,7 @@ repository_branch "1.9.3"
 build_image "locaweb-ruby"
 
 # Project Output format
-format "pawn"
+output_format "flat"
+
+# Project Output Path
+output_path "tmp/cegonha"

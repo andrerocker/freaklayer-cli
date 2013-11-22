@@ -1,23 +1,28 @@
 require "excon"
+require "archive"
+require "trollop"
+require "tempfile"
+require "colorize"
+require "progress_bar"
 
 require "bricklayer/http"
+require "bricklayer/build"
+require "bricklayer/config"
 require "bricklayer/logger"
+require "bricklayer/export"
+require "bricklayer/download"
+require "bricklayer/workspace"
 
 module Bricklayer
   module CLI
     extend self
 
-    def build_workspace(config)
-      Bricklayer::Logger.info "Creating initial workspace and clone project"
-      url = "#{config.get(:bricklayer)}/workspace/#{config.get(:project)}/branch/#{config.get(:repository_branch)}"
-      params = { repository: config.get(:repository) }
-      Bricklayer::Http.post url, params
-    end
-
-    def build_project(config)
-      Bricklayer::Logger.info "Building project"
-      url = "#{config.get(:bricklayer)}/build/#{config.get(:project)}/image/#{config.get(:build_image)}"
-      Bricklayer::Http.post url
+    def run
+      config = Bricklayer::Configuration.build("Bricklayer")
+      # Bricklayer::Workspace.build(config)
+      # Bricklayer::Builder.build(config)
+      # Bricklayer::Export.build(config)
+      Bricklayer::Download.build(config)
     end
   end
 end
