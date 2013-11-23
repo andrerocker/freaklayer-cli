@@ -3,15 +3,18 @@ module Bricklayer
     extend self
 
     def build(config)
-      Bricklayer::Logger.info "Build package to export project"
+      Bricklayer::Logger.info "Downloading package"
       url = "#{config.get(:bricklayer)}/download/#{config.get(:project)}"
       explode(config, Bricklayer::Http.download(url))
     end
 
     private
       def explode(config, tempfile)
+        Bricklayer::Logger.info "Extract package to bacon"
         archive = Archive.new(tempfile.path)
-        archive.each{|entry| puts entry.methods}
+        archive.each do |entry|
+          puts entry.methods
+        end
       end
   end
 end

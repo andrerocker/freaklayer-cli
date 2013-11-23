@@ -8,7 +8,7 @@ project "cegonha"
 repository "git@code.locaweb.com.br:iaas/cegonha.git"
 
 # Project Repository Branch
-repository_branch "1.9.3"
+repository_branch "master"
 
 # Project Build Image
 build_image "locaweb-ruby"

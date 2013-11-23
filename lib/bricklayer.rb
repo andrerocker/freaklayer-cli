@@ -19,10 +19,10 @@ module Bricklayer
 
     def run
       config = Bricklayer::Configuration.build("Bricklayer")
-      # Bricklayer::Workspace.build(config)
-      # Bricklayer::Builder.build(config)
+      Bricklayer::Workspace.build(config)
+      Bricklayer::Builder.build(config)
       # Bricklayer::Export.build(config)
-      Bricklayer::Download.build(config)
+      # Bricklayer::Download.build(config)
     end
   end
 end
