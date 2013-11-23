@@ -48,8 +48,9 @@ module Bricklayer
         def parse_argv
           @configuration.merge!(Trollop::options do
             configuration = Configuration.to_hash
-            opt :repository_branch, "Repository Branch", :default => configuration[:repository_branch]
+            opt :bricklayer, "Bricklayer Server URL", :default => configuration[:bricklayer]
             opt :build_image, "Builder Image Name", :default => configuration[:build_image]
+            opt :repository_branch, "Repository Branch", :default => configuration[:repository_branch]
             opt :project, "Project Name", :default => configuration[:project]
             opt :repository, "Git Repository", :default => configuration[:repository]
           end)
