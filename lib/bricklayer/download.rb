@@ -10,11 +10,12 @@ module Bricklayer
 
     private
       def explode(config, tempfile)
-        Bricklayer::Logger.info "Extract package to bacon"
-        archive = Archive.new(tempfile.path)
-        archive.each do |entry|
-          puts entry.methods
-        end
+        Bricklayer::Logger.line
+        Bricklayer::Logger.line
+        output_path = config.get(:output_path)
+        Bricklayer::Logger.info "Extract package to #{output_path}"
+        Bricklayer::Logger.debug "tar -xzvf #{tempfile.path} -C #{output_path}"
+        Bricklayer::Util.unpack(tempfile.path, output_path)
       end
   end
 end

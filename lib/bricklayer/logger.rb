@@ -14,5 +14,9 @@ module Bricklayer
     def output(message)
       puts "  #{message}"
     end
+
+    def line
+      puts
+    end
   end
 end
