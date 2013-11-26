@@ -1,4 +1,3 @@
-
 module Bricklayer
   module Logger
     extend self
