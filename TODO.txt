@@ -1,0 +1,8 @@
+Mini Backlog
+
+- Ao executar comandos de build tratar erros, hoje se um erro acontece no primeiro
+  passo tudo continuar executando ainda, zuado!
+
+- Organizar os imports de gems etc em classes que realmente usam
+- Mover Http e coisas com cara de util para util pah kdoaskdo
+- Arrumar progressbar implementação ta ultra cagada

@@ -19,7 +19,7 @@ require "bricklayer/commands/build/workspace"
 class Bricklayer::Commands::BuildCommand
   def self.build(config)
     Bricklayer::Commands::Build::Workspace.build(config)
-    Bricklayer::Commands::Build::Builder.build(config)
+    # Bricklayer::Commands::Build::Builder.build(config)
     Bricklayer::Commands::Build::Export.build(config)
     Bricklayer::Commands::Build::Download.build(config)
   end

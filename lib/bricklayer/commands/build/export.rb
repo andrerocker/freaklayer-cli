@@ -3,7 +3,7 @@ class Bricklayer::Commands::Build::Export
     Bricklayer::Logger.info "Build package to export project"
     url = "#{config.bricklayer}/export/#{config.project}"
     bar = ProgressBar.new(total_files(config))
-    Bricklayer::Commands::Build::Http.post url, bar
+    Bricklayer::Commands::Build::Http.post(url, bar)
     Bricklayer::Logger.line
   end
 
