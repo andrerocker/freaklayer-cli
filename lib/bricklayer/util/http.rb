@@ -1,4 +1,4 @@
-module Bricklayer::Commands::Build::Http
+module Bricklayer::Http
   extend self
 
   def post(url, bar, params = {})

@@ -2,7 +2,7 @@ class Bricklayer::Commands::Build::Download
   def self.build(config)
     Bricklayer::Logger.info "Downloading package"
     url = "#{config.bricklayer}/download/#{config.project}"
-    explode(config, Bricklayer::Commands::Build::Http.download(url))
+    explode(config, Bricklayer::Http.download(url))
   end
 
   private
