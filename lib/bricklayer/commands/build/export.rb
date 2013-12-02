@@ -1,6 +1,6 @@
 class Bricklayer::Commands::Build::Export
   def self.build(config)
-    Bricklayer::Logger.info "Build package to export project"
+    Bricklayer::Logger.info "Exporting project package"
     url = "#{config.bricklayer}/export/#{config.project}"
     bar = ProgressBar.new(total_files(config))
     Bricklayer::Http.post(url, bar)

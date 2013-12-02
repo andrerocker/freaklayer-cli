@@ -1,12 +1,6 @@
 module Bricklayer::Commands::Build; end
 
-require "pty"
-require "zlib"
-require "excon"
-require "tempfile"
-require "colorize"
 require "progress_bar"
-require "archive/tar/minitar"
 
 require "bricklayer/util"
 require "bricklayer/commands/build/builder"

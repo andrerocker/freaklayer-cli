@@ -1,3 +1,5 @@
+require "colorize"
+
 module Bricklayer::Logger
   extend self
 

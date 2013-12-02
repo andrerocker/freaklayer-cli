@@ -1,3 +1,6 @@
+require "excon"
+require "tempfile"
+
 module Bricklayer::Http
   extend self
 
@@ -19,9 +22,10 @@ module Bricklayer::Http
   def download(url)
     Bricklayer::Logger.debug "GET #{url}"
     temp = Tempfile.new("build-file")
+    key  = Time.now
 
     streamer = lambda do |chunk, remaining_bytes, total_bytes|
-      bar = resolve_bar(total_bytes)
+      bar = Bricklayer::Util.resolve_bar(total_bytes, key)
       temp.write(chunk)
       bar.increment!(chunk.size)
     end
@@ -32,7 +36,7 @@ module Bricklayer::Http
 
   private
     def chunk_processor(bar = false)
-      @chunk ||= streammer = lambda do |chunk,_,_|
+      streammer = lambda do |chunk,_,_|
         chunk.split("\n").
           collect(&:strip).
           collect(&:chomp).
@@ -43,12 +47,6 @@ module Bricklayer::Http
               Bricklayer::Logger.output(current)
             end
           end
-      end
-    end
-
-    def resolve_bar(size)
-      @bar ||= begin
-        ProgressBar.new(size)
       end
     end
 end
